@@ -2,6 +2,7 @@
 #include "InternetButton/InternetButton.h"
 
 InternetButton b = InternetButton();
+int published = 0;
 
 void setup() {
     Particle.subscribe("SupRecipe", runRecipe);
@@ -18,5 +19,12 @@ void runRecipe(const char *event, const char *data)
 }
 
 void loop() {
+    if(b.buttonOn(3)) {
+        if(!published) {
+            Particle.publish("SupRecipe");
+            published = 1;                                  
+        }
+    }
+    else {published = 0;} 
 }
 
