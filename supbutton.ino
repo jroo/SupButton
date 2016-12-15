@@ -3,6 +3,7 @@
 
 InternetButton b = InternetButton();
 int published = 0;
+int notificationTimeout = 
 
 void setup() {
     Particle.subscribe("SupRecipe", runRecipe);
@@ -18,16 +19,22 @@ void blinkLED(int led, int rc, int gc, int bc) {
     }
 }
 
+void showAll(int rc, int gc, int bc) {
+    for (int i=1; i<=12; i++) {
+        b.ledOn(i, rc, gc, bc);
+    }
+}
+
 void runRecipe(const char *event, const char *data)
 {
     if (String(data) == "Recipe 1") {
-        blinkLED(12, 0, 0, 255);
+        // do nothing
     } else if (String(data) == "Recipe 2") {
-        blinkLED(3, 0, 0, 255);
+        // do nothing
     } else if (String(data) == "Recipe 3") {
-        blinkLED(6, 0, 0, 255);
+        showAll(255, 255, 255);
     } else if (String(data) == "Recipe 4") {
-        blinkLED(9, 0, 0, 255);
+        // do nothing
     }
 }
 
