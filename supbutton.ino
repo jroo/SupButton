@@ -15,7 +15,7 @@ void setup() {
 
 void blinkLED(int led, int rc, int gc, int bc) {
     for (int i=0; i<5; i++) {
-        b.ledOn(led, rc, gc, bc);
+        b.smoothLedOn(led, rc, gc, bc);
         delay(1000);
         b.ledOff(led);
         delay(1000);
@@ -47,7 +47,6 @@ void runRecipe(const char *event, const char *data)
         // do nothing
     } else if (String(data) == "Recipe 3") {
         notificationTime = millis();
-        showAll(255, 255, 255);
         notificationOn = 1;
     } else if (String(data) == "Recipe 4") {
         // do nothing
@@ -59,6 +58,12 @@ void loop() {
     if (notificationOn && ((millis() - notificationTime) > notificationTimeOut)) {
         clearNotification();
     }
+    
+    if (notificationOn) {
+        b.rainbow(15);
+    }
+    
+    //check for button presses
     if(b.buttonOn(1)) {
         if(!published) {
             Particle.publish("SupRecipe", "Recipe 1");
