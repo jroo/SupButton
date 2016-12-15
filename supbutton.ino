@@ -14,21 +14,6 @@ void setup() {
     b.setBrightness(128);
 }
 
-void blinkLED(int led, int rc, int gc, int bc) {
-    for (int i=0; i<5; i++) {
-        b.smoothLedOn(led, rc, gc, bc);
-        delay(1000);
-        b.ledOff(led);
-        delay(1000);
-    }
-}
-
-void showAll(int rc, int gc, int bc) {
-    for (int i=1; i<=12; i++) {
-        b.ledOn(i, rc, gc, bc);
-    }
-}
-
 void clearAll() {
     for (int i=1; i<=12; i++) {
         b.ledOn(i, 0, 0, 0);
