@@ -11,6 +11,7 @@ void setup() {
     Serial.begin(9600);
     Particle.subscribe("SupRecipe", runRecipe);
     b.begin();
+    b.setBrightness(128);
 }
 
 void blinkLED(int led, int rc, int gc, int bc) {
@@ -60,7 +61,7 @@ void loop() {
     }
     
     if (notificationOn) {
-        b.rainbow(15);
+        b.rainbow(11);
     }
     
     //check for button presses
